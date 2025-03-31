@@ -250,39 +250,39 @@ def deploy_item(
         if item_type is None:
             item_type = platform_data["metadata"]["type"]
 
-        # Loop through all files and apply the find & replace with regular expressions
+    # Loop through all files and apply the find & replace with regular expressions
 
-        if find_and_replace:
+    if find_and_replace:
 
-            for root, _, files in os.walk(staging_path):
-                for file in files:
+        for root, _, files in os.walk(staging_path):
+            for file in files:
 
-                    file_path = os.path.join(root, file)
+                file_path = os.path.join(root, file)
 
-                    with open(file_path, "r") as file:
-                        text = file.read()
+                with open(file_path, "r") as file:
+                    text = file.read()
 
-                    # Loop parameters and execute the find & replace in the ones that match the file path
+                # Loop parameters and execute the find & replace in the ones that match the file path
 
-                    for key, replace_value in find_and_replace.items():
+                for key, replace_value in find_and_replace.items():
 
-                        find_and_replace_file_filter = key[0]
+                    find_and_replace_file_filter = key[0]
 
-                        find_and_replace_file_find = key[1]
+                    find_and_replace_file_find = key[1]
 
-                        if re.search(find_and_replace_file_filter, file_path):
-                            text, count_subs = re.subn(
-                                find_and_replace_file_find, replace_value, text
+                    if re.search(find_and_replace_file_filter, file_path):
+                        text, count_subs = re.subn(
+                            find_and_replace_file_find, replace_value, text
+                        )
+
+                        if count_subs > 0:
+
+                            print(
+                                f"Find & replace in file '{file_path}' with regex '{find_and_replace_file_find}'"
                             )
 
-                            if count_subs > 0:
-
-                                print(
-                                    f"Find & replace in file '{file_path}' with regex '{find_and_replace_file_find}'"
-                                )
-
-                                with open(file_path, "w") as file:
-                                    file.write(text)
+                            with open(file_path, "w") as file:
+                                file.write(text)
 
     if not what_if:
         run_fab_command(
