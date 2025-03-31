@@ -114,14 +114,12 @@ for attempt in range(3):
 
     print("Waiting for SQL endpoint...")
 
-    time.sleep(10)
+    time.sleep(30)
 
-if sql_endpoint == None or sql_endpoint == "":
+if sql_endpoint == None or sql_endpoint == "" or sql_endpoint == "None":
     raise Exception(f"Cannot resolve SQL endpoint for lakehouse {lakehouse_name}")
 
 print(f"SQL endpoint: {sql_endpoint}")
-
-raise Exception("SQL endpoint: {sql_endpoint}")
 
 # Deploy semantic model
 
