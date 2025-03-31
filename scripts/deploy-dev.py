@@ -121,6 +121,8 @@ if sql_endpoint == None or sql_endpoint == "":
 
 print(f"SQL endpoint: {sql_endpoint}")
 
+raise Exception("SQL endpoint: {sql_endpoint}")
+
 # Deploy semantic model
 
 semanticmodel_id = deploy_item(
