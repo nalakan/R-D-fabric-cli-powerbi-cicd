@@ -119,6 +119,8 @@ for attempt in range(3):
 if sql_endpoint == None or sql_endpoint == "":
     raise Exception(f"Cannot resolve SQL endpoint for lakehouse {lakehouse_name}")
 
+print(f"SQL endpoint: {sql_endpoint}")
+
 # Deploy semantic model
 
 semanticmodel_id = deploy_item(
