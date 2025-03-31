@@ -6,7 +6,7 @@ from utils import *
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 parser.add_argument("--spn-auth", action="store_true", default=True)
-parser.add_argument("--workspace", default="SalesSense")
+parser.add_argument("--workspace", default="SalesSense3")
 parser.add_argument("--admin-upns", default=os.getenv("FABRIC_ADMIN_UPNS"))
 parser.add_argument(
     "--capacity", default=os.getenv("FABRIC_CAPACITY")
@@ -103,6 +103,8 @@ deploy_item(
 
 # Get SQL endpoint - its created asynchronously so we need to wait for it to be available
 
+sql_endpoint = None
+
 for attempt in range(3):
 
     sql_endpoint = run_fab_command(
@@ -110,9 +112,11 @@ for attempt in range(3):
         capture_output=True,
     )
 
-    time.sleep(5)
+    print("Waiting for SQL endpoint...")
 
-if not sql_endpoint:
+    time.sleep(10)
+
+if sql_endpoint == None or sql_endpoint == "":
     raise Exception(f"Cannot resolve SQL endpoint for lakehouse {lakehouse_name}")
 
 # Deploy semantic model
