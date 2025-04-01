@@ -108,14 +108,21 @@ deploy_item(
 
 # Get SQL endpoint - its created asynchronously so we need to wait for it to be available
 
+sql_endpoint = None
+
 for attempt in range(3):
 
     sql_endpoint = run_fab_command(
-        f"get /{workspace_name_data}.workspace/{lakehouse_name}.lakehouse -q properties.sqlEndpointProperties.connectionString",
+        f"get /{workspace_name}.workspace/{lakehouse_name}.lakehouse -q properties.sqlEndpointProperties.connectionString",
         capture_output=True,
     )
 
-    time.sleep(5)
+    if sql_endpoint != None and sql_endpoint != "":
+        break
+
+    print("Waiting for SQL endpoint...")
+
+    time.sleep(30)
 
 if not sql_endpoint:
     raise Exception(f"Cannot resolve SQL endpoint for lakehouse {lakehouse_name}")
