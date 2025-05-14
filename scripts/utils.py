@@ -167,7 +167,6 @@ def create_item(
     item_type: str = None,
     item_name: str = None,
     parameters: dict = None,
-    upns: list = None,
 ):
     """
     Creates an item in the specified workspace.
@@ -176,7 +175,6 @@ def create_item(
         item_type (str, optional): The type of the item to be created.
         item_name (str, optional): The name of the item to be created.
         parameters (dict, optional): A dictionary of parameters to be passed during item creation.
-        upns (list, optional): A list of UPNs (User Principal Names) associated with the item.
     Returns:
         str: The ID of the created item.
     """
