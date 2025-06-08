@@ -7,7 +7,7 @@ expression Server = "x6eps4xrq2xudenlfv6naeo3i4-tixzdbe2rxiehkkfthtucqva6i.msit-
 
 expression SalesDateAdjustedAndSalesRandomized =
 		let
-		    Source = Sql.Database(Server, Database),
+		    Source = Sql.Database("m2wf726xgzyulogk67xjk6gulq-p5sskyew6buu7bnba2y7guqjrq.datawarehouse.fabric.microsoft.com", "LH_STORE_RAW"),
 		    Navigate = Source{[Schema="raw",Item="sales"]}[Data],
 		    #"Added Time" = Table.AddColumn(Navigate, "Time", each #time(Number.RoundDown(Number.RandomBetween(0, 23),0), Number.RoundDown(Number.RandomBetween(0, 59),0),0)),
 		    #"Changed Type" = Table.TransformColumnTypes(#"Added Time",{{"OrderDate", type date}, {"DeliveryDate", type date}, {"Quantity", Int64.Type}, {"UnitPrice", type number}, {"NetPrice", type number}, {"UnitCost", type number}}),

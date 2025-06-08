@@ -136,7 +136,7 @@ table Customer
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(Server, Database),
+				    Source = Sql.Database("m2wf726xgzyulogk67xjk6gulq-p5sskyew6buu7bnba2y7guqjrq.datawarehouse.fabric.microsoft.com", "LH_STORE_RAW"),
 				    Navigate = Source{[Schema="raw",Item="customer"]}[Data],
 				    #"Renamed Columns" = Table.RenameColumns(Navigate,{{"Name", "Customer"}}),
 				    #"Removed Columns" = Table.RemoveColumns(#"Renamed Columns",{"Age"}),
