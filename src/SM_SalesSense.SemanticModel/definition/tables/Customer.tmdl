@@ -6,7 +6,7 @@ table Customer
 		formatString: #,##0
 		lineageTag: a8dc565a-aa9b-40dc-902c-1ba2596b0977
 
-	measure TestM = ""
+	measure TestM = "abc"
 		lineageTag: b24d791e-ff54-4405-a941-ea7d5cda571f
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
