@@ -105,7 +105,7 @@ table Store
 		mode: import
 		source =
 				let
-				    Source = Sql.Database(Server, Database),
+				    Source = Sql.Database("m2wf726xgzyulogk67xjk6gulq-p5sskyew6buu7bnba2y7guqjrq.datawarehouse.fabric.microsoft.com", "LH_STORE_RAW"),
 				    Navigate = Source{[Schema="raw",Item="store"]}[Data],
 				    #"Renamed Columns" = Table.RenameColumns(Navigate,{{"Name", "Store"}}),
 				    #"Changed Type" = Table.TransformColumnTypes(#"Renamed Columns",{{"StoreKey", Int64.Type}, {"SquareMeters", Int64.Type}, {"OpenDate", type date}, {"CloseDate", type date}})
