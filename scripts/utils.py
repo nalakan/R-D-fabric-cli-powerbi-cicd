@@ -203,7 +203,7 @@ def create_item(
 
 
 def deploy_item(
-    src_path,
+    _path,
     workspace_name,
     item_type: str = None,
     item_name: str = None,
@@ -214,7 +214,7 @@ def deploy_item(
     """
     Deploys an item to a specified workspace.
     Args:
-        src_path (str): The source path of the item to be deployed.
+        _path (str): The source path of the item to be deployed.
         workspace_name (str): The name of the workspace where the item will be deployed.
         item_type (str, optional): The type of the item. If not provided, it will be inferred from the platform data.
         item_name (str, optional): The name of the item. If not provided, it will be inferred from the platform data.
@@ -228,9 +228,9 @@ def deploy_item(
         str: The ID of the deployed item if `what_if` is False. Otherwise, returns None.
     """
 
-    print(f"::group::Deploying {src_path}")
+    print(f"::group::Deploying {_path}")
 
-    staging_path = copy_to_staging(src_path)
+    staging_path = copy_to_staging(_path)
 
     # Call function that provides flexibility to change something in the staging files
 
