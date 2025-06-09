@@ -58,7 +58,7 @@ lakehouse_id = create_item(
 # Deploy data pipeline binded to the connection and workspace
 
 deploy_item(
-    "src/DP_INGST_CopyCSV.DataPipeline",
+    "DP_INGST_CopyCSV.DataPipeline",
     workspace_name=workspace_name,
     find_and_replace={
         (
@@ -79,7 +79,7 @@ deploy_item(
 # Deploy notebook
 
 deploy_item(
-    "src/NB_TRNSF_Raw.Notebook",
+    "NB_TRNSF_Raw.Notebook",
     workspace_name=workspace_name,
     find_and_replace={
         (
@@ -125,7 +125,7 @@ if sql_endpoint == None or sql_endpoint == "" or sql_endpoint == "None":
 # Deploy semantic model
 
 semanticmodel_id = deploy_item(
-    "src/SM_SalesSense.SemanticModel",
+    "SM_SalesSense.SemanticModel",
     workspace_name=workspace_name,
     find_and_replace={
         (
@@ -137,7 +137,7 @@ semanticmodel_id = deploy_item(
 
 # Deploy reports
 
-for report_path in glob.glob("src/*.Report"):
+for report_path in glob.glob("*.Report"):
 
     deploy_item(
         report_path,
