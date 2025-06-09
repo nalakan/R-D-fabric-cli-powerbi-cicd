@@ -79,17 +79,27 @@ deploy_item(
 # Deploy notebook
 
 deploy_item(
-    "NB_TRNSF_Raw.Notebook",
+    "src/NB_TRNSF_Raw.Notebook",
     workspace_name=workspace_name,
     find_and_replace={
-        # (filename, regex): replacement
-        ("notebook-content.ipynb", r'("default_lakehouse"\s*:\s*)".*"'): rf'\1"{lakehouse_id}"',
-        ("notebook-content.ipynb", r'("default_lakehouse_name"\s*:\s*)".*"'): rf'\1"{lakehouse_name}"',
-        ("notebook-content.ipynb", r'("default_lakehouse_workspace_id"\s*:\s*)".*"'): rf'\1"{workspace_id}"',
-        ("notebook-content.ipynb", r'("known_lakehouses"\s*:\s*)\[[\s\S]*?\]'): rf'\1[{{"id": "{lakehouse_id}"}}]',
+        (
+            r"notebook-content.ipynb",
+            r'("default_lakehouse"\s*:\s*)".*"',
+        ): rf'\1"{lakehouse_id}"',
+        (
+            r"notebook-content.ipynb",
+            r'("default_lakehouse_name"\s*:\s*)".*"',
+        ): rf'\1"{lakehouse_name}"',
+        (
+            r"notebook-content.ipynb",
+            r'("default_lakehouse_workspace_id"\s*:\s*)".*"',
+        ): rf'\1"{workspace_id}"',
+        (
+            r"notebook-content.ipynb",
+            r'("known_lakehouses"\s*:\s*)\[[\s\S]*?\]',
+        ): rf'\1[{{"id": "{lakehouse_id}"}}]',
     },
 )
-
 
 
 # Get SQL endpoint - its created asynchronously so we need to wait for it to be available
