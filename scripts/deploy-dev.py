@@ -79,7 +79,7 @@ deploy_item(
 # Deploy notebook
 
 deploy_item(
-    "src/NB_TRNSF_Raw.Notebook",
+    "NB_TRNSF_Raw.Notebook",  # ✅ No 'src/' prefix
     workspace_name=workspace_name,
     find_and_replace={
         (
@@ -100,6 +100,7 @@ deploy_item(
         ): rf'\1[{{"id": "{lakehouse_id}"}}]',
     },
 )
+
 
 
 # Get SQL endpoint - its created asynchronously so we need to wait for it to be available
