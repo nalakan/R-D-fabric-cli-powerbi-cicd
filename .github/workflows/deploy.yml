@@ -1,15 +1,18 @@
 name: deploy
   
+
 on:
-
   # Deploys to DEV on push to main branch
-
   push:
     branches:
       - main           
     paths:
-      - '**/src/**'           
-    
+      - '**/*.SemanticModel/**'
+      - '**/*.Report/**'
+      - '**/*.Notebook/**'
+      - '**/*.Lakehouse/**'
+      - '**/*.DataPipeline/**'
+      - 'scripts/**'
   # Deploys to PRD every day (commented to save Actions minutes in Github)
 
   # schedule:
