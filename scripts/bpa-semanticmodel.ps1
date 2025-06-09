@@ -1,4 +1,4 @@
-param ($path = $null, $src = ".\..\src\*.SemanticModel")
+param ($path = $null, $src = ".\..\*.SemanticModel")
 
 $currentFolder = (Split-Path $MyInvocation.MyCommand.Definition -Parent)
 
