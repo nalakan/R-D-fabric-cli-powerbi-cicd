@@ -1,4 +1,4 @@
-param ($path = $null, $src = ".\..\src\*.Report")
+param ($path = $null, $src = ".\*.Report")
 
 $currentFolder = (Split-Path $MyInvocation.MyCommand.Definition -Parent)
 
@@ -44,15 +44,13 @@ if ($src) {
 
     # Run BPA rules
 
-    $itemsFolders = Get-ChildItem  -Path $src -recurse -include ("*.pbir")
+    $itemsFolders = Get-ChildItem -Path $src -Recurse -Include ("*.pbir")
 
     foreach ($itemFolder in $itemsFolders) {	
         $itemPath = "$($itemFolder.Directory.FullName)\definition"
 
         if (!(Test-Path $itemPath)) {
-              if (!(Test-Path $itemPath)) {
-                throw "Cannot find report PBIR definition. If you are using PBIR-Legacy (report.json), please convert it to PBIR using Power BI Desktop."
-            }
+            throw "Cannot find report PBIR definition. If you are using PBIR-Legacy (report.json), please convert it to PBIR using Power BI Desktop."
         }
 
         Write-Host "Running BPA rules for: '$itemPath'"
