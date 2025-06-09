@@ -3,6 +3,8 @@
 
 local-*.py
 
+src/**
+
 /scripts/_tools
 
 /scripts/_stg
